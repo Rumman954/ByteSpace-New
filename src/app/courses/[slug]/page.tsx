@@ -235,6 +235,7 @@ export default function CourseDetailPage() {
     reviewFilter === "all" ? reviews : reviews.filter((item) => item.rating === reviewFilter);
 
   async function handleEnroll() {
+    if (!course) return;
     setEnrolling(true);
     try {
       if (!user) await demoLogin();
@@ -249,6 +250,7 @@ export default function CourseDetailPage() {
   }
 
   async function handleShare() {
+    if (!course) return;
     const url = window.location.href;
     try {
       if (navigator.share) {
