@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { FaStar, FaClock, FaUserGraduate } from "react-icons/fa";
 
@@ -64,25 +67,84 @@ const courses = [
   },
 ];
 
+const categories = [
+  "Featured",
+  "Music",
+  "Drawing & Painting",
+  "Marketing",
+  "Animation",
+  "Social Media",
+  "UI/UX Design",
+  "Creative Marketing",
+  "Digital Illustration",
+  "Film & Video",
+  "Crafts",
+  "Freelance & Entrepreneurship",
+  "Graphic Design",
+  "Photography",
+  "Productivity",
+  "Web Development",
+  "Data Science",
+  "Cooking",
+];
+
 const Courses = () => {
+  const [active, setActive] = useState("Featured");
+
+  const visibleCourses =
+    active === "Featured"
+      ? courses
+      : courses.filter(
+          (course) =>
+            course.category === active ||
+            (active === "UI/UX Design" && course.category === "Design")
+        );
+
   return (
-    <section className="py-16 lg:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-dark-navy mb-4">
-            Discover Your Passion,{" "}
-            <span className="text-primary-blue">Build Your Skills</span>
+    <section className="py-16 lg:py-20 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-[720px] mx-auto mb-8">
+          <h2 className="text-[36px] md:text-[44px] font-extrabold text-dark-navy leading-[1.15] tracking-tight">
+            Discover Your Passion,
+            <br />
+            Build Your Skills
           </h2>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Explore our wide range of courses designed to help you achieve your
-            learning goals and advance your career.
+          <p className="mt-4 text-[15px] md:text-base text-gray-500 leading-relaxed">
+            At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of
+            courses across different fields, from technology to the arts, and make a difference in your
+            career and life.
           </p>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12 max-w-5xl mx-auto">
+          {categories.map((item) => {
+            const selected = active === item;
+            return (
+              <button
+                key={item}
+                type="button"
+                onClick={() => setActive(item)}
+                className={`px-[18px] py-2 rounded-full text-[13px] font-medium transition-colors ${
+                  selected
+                    ? "bg-lime-accent text-dark-navy"
+                    : "bg-[#F1F2F4] text-gray-500 hover:bg-gray-200"
+                }`}
+              >
+                {item}
+              </button>
+            );
+          })}
+          <Link
+            href="/courses"
+            className="px-2 py-2 text-[13px] font-semibold text-primary-blue hover:underline"
+          >
+            + More
+          </Link>
         </div>
 
         {/* Course Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {courses.map((course) => (
+          {visibleCourses.map((course) => (
             <Link
               href={`/courses/${course.slug}`}
               key={course.id}
@@ -147,7 +209,11 @@ const Courses = () => {
           ))}
         </div>
 
-        {/* View All Button */}
+        {visibleCourses.length === 0 && (
+          <p className="text-center text-gray-400 mb-6">
+            No courses in this category yet. Browse all courses to explore more.
+          </p>
+        )}
         <div className="text-center mt-10">
           <Link href="/courses" className="bg-primary-blue hover:bg-primary-blue-dark text-white px-8 py-3 rounded-full font-semibold transition-colors duration-200 inline-block">
             View All Courses
