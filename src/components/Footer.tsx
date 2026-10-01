@@ -1,75 +1,93 @@
 import Link from "next/link";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import Logo from "@/components/Logo";
 
-const columns = {
-  Company: [
-    { name: "About Us", href: "/about" },
-    { name: "Careers", href: "/careers" },
-    { name: "Blog", href: "/blog" },
+const columns = [
+  [
+    { name: "Featured Courses", href: "/courses" },
+    { name: "Featured Categories", href: "/courses" },
+    { name: "Business", href: "/courses?category=business" },
+    { name: "IT", href: "/courses?category=it" },
+    { name: "Design", href: "/courses?category=design" },
   ],
-  Support: [
-    { name: "Help Center", href: "/help" },
-    { name: "Contact Us", href: "/contact" },
-    { name: "FAQs", href: "/faqs" },
+  [
+    { name: "Development", href: "/courses?category=development" },
+    { name: "Marketing", href: "/courses?category=marketing" },
+    { name: "Photography", href: "/courses?category=photography" },
+    { name: "Finance", href: "/courses?category=finance" },
+    { name: "Sport", href: "/courses?category=sport" },
   ],
-  Legal: [
-    { name: "Privacy Policy", href: "/privacy" },
-    { name: "Terms of Service", href: "/terms" },
+  [
+    { name: "Become a Creator", href: "/signup" },
+    { name: "Affiliate Program", href: "/about" },
+    { name: "Contact", href: "/contact" },
+    { name: "Help", href: "/help" },
+    { name: "About", href: "/about" },
   ],
-};
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-          <div className="lg:col-span-2">
-            <div className="mb-4">
-              <Logo wordmarkClassName="text-dark-navy" />
-            </div>
-            <p className="text-gray-500 text-sm leading-relaxed mb-5 max-w-sm">
-              Discover your passion and build skills with hundreds of courses from creators around the world.
+    <footer className="bg-white">
+      <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+          <div className="lg:col-span-5">
+            <Logo wordmarkClassName="text-dark-navy" />
+            <p className="mt-4 text-[14px] text-gray-500 leading-relaxed max-w-[360px]">
+              Stay Up to date with our latest features and releases by joining our newsletter.
             </p>
-            <div className="flex max-w-sm">
+            <form className="mt-6 flex items-center gap-3 max-w-[420px]" action="/courses">
               <input
                 type="email"
+                name="email"
                 placeholder="Enter your email"
-                className="input input-bordered rounded-l-full rounded-r-none w-full bg-light-gray"
+                className="flex-1 h-12 rounded-full border border-[#E6E8EC] px-5 text-[14px] text-dark-navy placeholder:text-gray-400 outline-none focus:border-primary-blue"
               />
-              <button className="btn bg-lime-accent border-none text-dark-navy rounded-r-full rounded-l-none px-5">
-                Subscribe
+              <button
+                type="submit"
+                className="h-12 px-7 rounded-full bg-lime-accent hover:bg-lime-dark text-dark-navy font-semibold text-[14px] shrink-0"
+              >
+                Search
               </button>
-            </div>
+            </form>
+            <p className="mt-4 text-[12px] text-gray-400 leading-relaxed max-w-[380px]">
+              By subscribing, you agree to our{" "}
+              <Link href="/privacy" className="underline underline-offset-2 hover:text-dark-navy">
+                Privacy Policy
+              </Link>{" "}
+              and consent to receive updates from our company.
+            </p>
           </div>
 
-          {Object.entries(columns).map(([title, links]) => (
-            <div key={title}>
-              <h3 className="font-bold text-dark-navy mb-4">{title}</h3>
-              <ul className="space-y-3">
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 lg:pl-8">
+            {columns.map((links) => (
+              <ul key={links[0].name} className="space-y-4">
                 {links.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="text-gray-500 text-sm hover:text-primary-blue">
+                    <Link
+                      href={link.href}
+                      className="text-[14px] text-gray-500 hover:text-dark-navy"
+                    >
                       {link.name}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-400 text-sm">© {new Date().getFullYear()} ByteSpace. All rights reserved.</p>
-          <div className="flex items-center gap-3">
-            {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map((Icon, i) => (
-              <span
-                key={i}
-                className="w-8 h-8 rounded-full bg-light-gray text-dark-navy flex items-center justify-center"
-              >
-                <Icon className="text-xs" />
-              </span>
-            ))}
+        <div className="mt-14 pt-6 border-t border-[#E8E8E8] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <p className="text-[13px] text-gray-400">© 2023 ByteSpace. All rights reserved.</p>
+          <div className="flex items-center gap-6">
+            <Link href="/privacy" className="text-[13px] text-gray-500 hover:text-dark-navy">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="text-[13px] text-gray-500 hover:text-dark-navy">
+              Terms of Service
+            </Link>
+            <Link href="/privacy" className="text-[13px] text-gray-500 hover:text-dark-navy">
+              Cookies Settings
+            </Link>
           </div>
         </div>
       </div>

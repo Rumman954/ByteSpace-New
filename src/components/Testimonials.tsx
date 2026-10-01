@@ -1,79 +1,60 @@
-import { FaStar, FaQuoteLeft } from "react-icons/fa";
-
 const testimonials = [
   {
-    id: 1,
-    name: "Alex Thompson",
-    role: "Frontend Developer",
-    avatar: "A",
-    avatarBg: "bg-primary-blue",
-    rating: 5,
-    text: "ByteSpace completely transformed my career. The web development course was incredibly well-structured and the hands-on projects helped me land my dream job.",
+    name: "Sarah M.",
+    role: "Enthusiastic Learner",
+    avatar: "/images/Ellipse.png",
+    text: "ByteSpace has transformed my approach to learning. The diverse range of courses and the quality of content provided by creators have exceeded my expectations. The platform truly fosters a sense of community and lifelong learning.",
   },
   {
-    id: 2,
-    name: "Maria Garcia",
-    role: "Data Analyst",
-    avatar: "M",
-    avatarBg: "bg-lime-accent",
-    rating: 5,
-    text: "The data science courses are top-notch. I went from knowing nothing about Python to building machine learning models in just 3 months. Highly recommended!",
+    name: "James L.",
+    role: "Lifelong Learner",
+    avatar: "/images/Ellipse (1).png",
+    text: "I've tried several online learning platforms, and ByteSpace stands out for its vibrant community and the variety of courses available. The easy navigation and engaging content make it a go-to platform for continuous skill development.",
   },
   {
-    id: 3,
-    name: "David Kim",
-    role: "UX Designer",
-    avatar: "D",
-    avatarBg: "bg-purple-500",
-    rating: 5,
-    text: "Amazing platform with great instructors. The UI/UX design course gave me practical skills that I use every day. The community is also super supportive.",
+    name: "Alex B.",
+    role: "Inspired Creator",
+    avatar: "/images/Ellipse (2).png",
+    text: "As a creator, ByteSpace has been a game-changer for me. The Course Editor is user-friendly, and the support from the community is incredible. It's fulfilling to see my courses making a positive impact on learners globally.",
   },
 ];
 
 const Testimonials = () => {
   return (
-    <section className="py-16 lg:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-dark-navy mb-4">
-            Discover What Our{" "}
-            <span className="text-primary-blue">Community</span> is Saying
+    <section className="relative overflow-hidden pt-16 pb-20 lg:pt-20 lg:pb-24">
+      <div className="pointer-events-none absolute -top-24 right-0 w-[520px] h-[420px] rounded-full bg-[#E8FF7A]/70 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-32 -left-16 w-[420px] h-[420px] rounded-full bg-[#2B4FFF]/10 blur-3xl" />
+
+      <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start mb-12 lg:mb-14">
+          <h2 className="text-[32px] md:text-[40px] font-extrabold text-dark-navy leading-[1.15] tracking-tight">
+            Discover What Our
+            <br />
+            Community Is Saying
           </h2>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Hear from our students who have transformed their careers through our
-            platform.
+          <p className="text-[15px] text-gray-500 leading-relaxed max-w-[540px] lg:ml-auto lg:pt-2">
+            At ByteSpace, our vibrant community of learners and creators is at the heart of what we
+            do. Hear directly from those who have experienced the transformative journey of learning
+            and creating on our platform. Explore testimonials that reflect the diverse perspectives of
+            enthusiastic learners and accomplished creators.
           </p>
         </div>
 
-        {/* Testimonial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className="bg-light-gray rounded-2xl p-8 hover:shadow-xl transition-all duration-300 card-hover"
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+          {testimonials.map((item) => (
+            <article
+              key={item.name}
+              className="bg-white rounded-[28px] p-7 lg:p-8 shadow-[0_12px_40px_rgba(15,23,42,0.06)] border border-[#F0F1F4]"
             >
-              <FaQuoteLeft className="text-primary-blue/20 text-3xl mb-4" />
-              <p className="text-gray-600 leading-relaxed mb-6">
-                {testimonial.text}
-              </p>
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <FaStar key={i} className="text-yellow-400 text-sm" />
-                ))}
-              </div>
-              <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
-                <div
-                  className={`w-11 h-11 rounded-full ${testimonial.avatarBg} flex items-center justify-center text-white font-bold`}
-                >
-                  {testimonial.avatar}
-                </div>
-                <div>
-                  <p className="font-bold text-dark-navy">{testimonial.name}</p>
-                  <p className="text-sm text-gray-500">{testimonial.role}</p>
-                </div>
-              </div>
-            </div>
+              <img
+                src={item.avatar}
+                alt={item.name}
+                className="w-[72px] h-[72px] rounded-full object-cover"
+              />
+              <h3 className="mt-5 font-bold text-[18px] text-dark-navy leading-none">{item.name}</h3>
+              <p className="mt-2 text-[14px] text-primary-blue">{item.role}</p>
+              <p className="mt-5 text-[14px] text-gray-500 leading-relaxed">“{item.text}”</p>
+            </article>
           ))}
         </div>
       </div>

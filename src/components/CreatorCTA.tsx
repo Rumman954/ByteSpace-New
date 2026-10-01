@@ -1,78 +1,68 @@
-import { FaGraduationCap, FaDollarSign, FaGlobe, FaHeadset } from "react-icons/fa";
 import Link from "next/link";
 
-const benefits = [
-  {
-    icon: FaGraduationCap,
-    title: "Share Your Knowledge",
-    description: "Create courses on topics you're passionate about and help others learn.",
-  },
-  {
-    icon: FaDollarSign,
-    title: "Earn Revenue",
-    description: "Monetize your expertise and earn income from your course sales.",
-  },
-  {
-    icon: FaGlobe,
-    title: "Global Reach",
-    description: "Reach students from around the world with our global platform.",
-  },
-  {
-    icon: FaHeadset,
-    title: "Creator Support",
-    description: "Get dedicated support to help you create and grow your courses.",
-  },
-];
+const limeFromWhite = {
+  filter:
+    "brightness(0) invert(89%) sepia(64%) saturate(1800%) hue-rotate(18deg) brightness(1.08)",
+} as const;
 
 const CreatorCTA = () => {
   return (
-    <section className="py-16 lg:py-24 bg-primary-blue relative overflow-hidden hero-grid-pattern">
-      {/* Decorative Elements */}
-      <div className="absolute top-10 left-10 w-32 h-32 bg-lime-accent/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 right-10 w-40 h-40 bg-lime-accent/10 rounded-full blur-3xl" />
+    <section className="relative overflow-hidden bg-primary-blue hero-grid-pattern min-h-[360px] lg:min-h-[400px] pt-16 pb-14 lg:pt-20 lg:pb-16">
+      <img
+        src="/images/Framer.png"
+        alt=""
+        className="absolute -top-10 -left-16 w-[240px] h-auto pointer-events-none select-none"
+      />
+      <img
+        src="/images/Framer (1).png"
+        alt=""
+        className="absolute top-6 left-[13%] w-[108px] h-auto pointer-events-none select-none -rotate-[10deg]"
+      />
+      <img
+        src="/images/Cone (1).png"
+        alt=""
+        className="absolute bottom-8 -left-12 w-[130px] h-auto pointer-events-none select-none -rotate-[24deg]"
+      />
+      <img
+        src="/images/Cone.png"
+        alt=""
+        style={limeFromWhite}
+        className="absolute -bottom-16 left-[1%] w-[210px] h-auto pointer-events-none select-none -rotate-[16deg]"
+      />
+      <img
+        src="/images/Cone (3).png"
+        alt=""
+        className="absolute top-8 right-[14%] w-[100px] h-auto pointer-events-none select-none rotate-[22deg]"
+      />
+      <img
+        src="/images/Mask Group.png"
+        alt=""
+        className="absolute -top-6 -right-16 w-[190px] h-auto pointer-events-none select-none rotate-[8deg]"
+      />
+      <img
+        src="/images/Mask Group (1).png"
+        alt=""
+        className="absolute -bottom-12 -right-8 w-[240px] h-auto pointer-events-none select-none rotate-[42deg] drop-shadow-[0_10px_18px_rgba(160,200,0,0.35)]"
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Unlock Your Potential as a{" "}
-            <span className="text-lime-accent">Creator</span> with ByteSpace
-          </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
-            Join thousands of instructors who are already sharing their expertise
-            and earning on ByteSpace.
-          </p>
-        </div>
-
-        {/* Benefits Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {benefits.map((benefit, index) => {
-            const IconComponent = benefit.icon;
-            return (
-              <div
-                key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 group"
-              >
-                <div className="w-14 h-14 bg-lime-accent/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-lime-accent/30 transition-colors">
-                  <IconComponent className="text-lime-accent text-2xl" />
-                </div>
-                <h3 className="text-white font-bold text-lg mb-2">
-                  {benefit.title}
-                </h3>
-                <p className="text-white/50 text-sm leading-relaxed">
-                  {benefit.description}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* CTA Button */}
-        <div className="text-center mt-12">
-          <Link href="/signup" className="inline-block bg-lime-accent hover:bg-lime-dark text-dark-navy px-10 py-4 rounded-full font-bold text-lg transition-colors duration-200 shadow-lg">
-            Become an Instructor
-          </Link>
-        </div>
+      <div className="relative z-10 max-w-[820px] mx-auto px-6 text-center">
+        <h2 className="text-white text-[32px] md:text-[44px] font-extrabold leading-[1.2] tracking-tight">
+          Unlock Your Potential as a
+          <br />
+          Creator with ByteSpace
+        </h2>
+        <p className="mt-5 text-white/80 text-[13px] md:text-[15px] leading-relaxed max-w-[720px] mx-auto">
+          Experience the collaboration of numerous creators and an expanding selection of courses. Register now
+          and become a part of a community comprising over 10,000 local and international creators. Utilize our
+          Course Editor, and showcase your expertise by publishing your finest course on the ByteSpace Course
+          Library.
+        </p>
+        <Link
+          href="/signup"
+          className="inline-flex items-center justify-center mt-8 bg-lime-accent hover:bg-lime-dark text-dark-navy h-10 px-7 rounded-full font-semibold text-[14px] transition-colors"
+        >
+          Join as Creator
+        </Link>
       </div>
     </section>
   );

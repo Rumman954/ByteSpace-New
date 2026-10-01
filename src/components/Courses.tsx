@@ -2,68 +2,51 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { FaStar, FaClock, FaUserGraduate } from "react-icons/fa";
+
+const avatars = ["/images/Ellipse.png", "/images/Ellipse (1).png", "/images/Ellipse (2).png"];
 
 const courses = [
   {
     id: 1,
-    slug: "complete-web-development-bootcamp",
-    title: "Complete Web Development Bootcamp",
-    category: "Web Development",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop",
-    rating: 4.8,
-    reviews: 2450,
-    price: 49.99,
-    originalPrice: 99.99,
-    instructor: "John Smith",
-    duration: "42 hours",
-    students: 12500,
-    level: "Beginner",
+    slug: "figma-to-tailwind",
+    title: "Learn Figma from Basic",
+    category: "UI/UX Design",
+    image: "/images/Frame.png",
   },
   {
     id: 2,
-    slug: "data-science-machine-learning",
-    title: "Data Science & Machine Learning A-Z",
-    category: "Data Science",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-    rating: 4.9,
-    reviews: 1820,
-    price: 59.99,
-    originalPrice: 119.99,
-    instructor: "Sarah Johnson",
-    duration: "56 hours",
-    students: 9800,
-    level: "Intermediate",
+    slug: "ui-ux-design-masterclass",
+    title: "Build Digital Asset",
+    category: "Graphic Design",
+    image: "/images/Frame (1).png",
   },
   {
     id: 3,
-    slug: "ui-ux-design-masterclass",
-    title: "UI/UX Design Masterclass",
-    category: "Design",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=250&fit=crop",
-    rating: 4.7,
-    reviews: 1340,
-    price: 39.99,
-    originalPrice: 79.99,
-    instructor: "Emily Chen",
-    duration: "38 hours",
-    students: 7600,
-    level: "Beginner",
+    slug: "data-science-machine-learning",
+    title: "the Power of Big Data",
+    category: "Data Science",
+    image: "/images/Frame (2).png",
   },
   {
     id: 4,
-    slug: "advanced-react-nextjs",
-    title: "Advanced React & Next.js Development",
-    category: "Web Development",
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=250&fit=crop",
-    rating: 4.9,
-    reviews: 980,
-    price: 54.99,
-    originalPrice: 109.99,
-    instructor: "Mike Wilson",
-    duration: "48 hours",
-    students: 5200,
-    level: "Advanced",
+    slug: "digital-marketing-growth",
+    title: "Balancing Productivity and Time",
+    category: "Productivity",
+    image: "/images/Frame (3).png",
+  },
+  {
+    id: 5,
+    slug: "sql-for-analysts",
+    title: "Mastering Money Management",
+    category: "Freelance & Entrepreneurship",
+    image: "/images/Frame (4).png",
+  },
+  {
+    id: 6,
+    slug: "ai-prompt-engineering",
+    title: "From Idea to Startup Success",
+    category: "Freelance & Entrepreneurship",
+    image: "/images/Frame (5).png",
   },
 ];
 
@@ -88,21 +71,39 @@ const categories = [
   "Cooking",
 ];
 
+function SignalIcon() {
+  return (
+    <svg width="14" height="12" viewBox="0 0 14 12" fill="none" aria-hidden>
+      <rect x="1" y="8" width="2.2" height="3" rx="0.6" fill="#9CA3AF" />
+      <rect x="4.4" y="5.5" width="2.2" height="5.5" rx="0.6" fill="#9CA3AF" />
+      <rect x="7.8" y="3" width="2.2" height="8" rx="0.6" fill="#9CA3AF" />
+      <rect x="11.2" y="0.5" width="2.2" height="10.5" rx="0.6" fill="#D1D5DB" />
+    </svg>
+  );
+}
+
+function StarIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden>
+      <path
+        d="M8 1.4l1.76 3.56 3.93.57-2.84 2.77.67 3.91L8 10.36 4.48 12.21l.67-3.91L2.31 5.53l3.93-.57L8 1.4z"
+        fill="#C5CAD3"
+      />
+    </svg>
+  );
+}
+
 const Courses = () => {
   const [active, setActive] = useState("Featured");
 
   const visibleCourses =
     active === "Featured"
       ? courses
-      : courses.filter(
-          (course) =>
-            course.category === active ||
-            (active === "UI/UX Design" && course.category === "Design")
-        );
+      : courses.filter((course) => course.category === active);
 
   return (
     <section className="py-16 lg:py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-[720px] mx-auto mb-8">
           <h2 className="text-[36px] md:text-[44px] font-extrabold text-dark-navy leading-[1.15] tracking-tight">
             Discover Your Passion,
@@ -142,68 +143,54 @@ const Courses = () => {
           </Link>
         </div>
 
-        {/* Course Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {visibleCourses.map((course) => (
             <Link
               href={`/courses/${course.slug}`}
               key={course.id}
-              className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 group card-hover"
+              className="bg-white rounded-[22px] border border-[#E6E8EC] p-3.5 pb-5 hover:shadow-[0_12px_32px_rgba(15,23,42,0.08)] transition-shadow"
             >
-              {/* Image */}
-              <div className="relative overflow-hidden h-48">
-                <img
-                  src={course.image}
-                  alt={course.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <span className="absolute top-3 left-3 bg-primary-blue text-white text-xs font-semibold px-3 py-1 rounded-full">
-                  {course.category}
-                </span>
-              </div>
+              <img src={course.image} alt={course.title} className="w-full h-auto block" />
 
-              {/* Content */}
-              <div className="p-5">
-                <h3 className="font-bold text-dark-navy mb-2 line-clamp-2 group-hover:text-primary-blue transition-colors">
-                  {course.title}
-                </h3>
-
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="flex items-center gap-1">
-                    <FaStar className="text-yellow-400 text-sm" />
-                    <span className="text-sm font-semibold text-dark-navy">
-                      {course.rating}
-                    </span>
-                  </div>
-                  <span className="text-sm text-gray-400">
-                    ({course.reviews.toLocaleString()} reviews)
+              <div className="px-1.5 mt-4">
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="font-bold text-[17px] leading-snug text-dark-navy line-clamp-1">
+                    {course.title}
+                  </h3>
+                  <span className="shrink-0 flex items-center gap-1 text-[14px] font-semibold text-dark-navy pt-0.5">
+                    4.5
+                    <StarIcon />
                   </span>
                 </div>
 
-                <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-                  <div className="flex items-center gap-1">
-                    <FaClock className="text-xs" />
-                    <span>{course.duration}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <FaUserGraduate className="text-xs" />
-                    <span>{course.students.toLocaleString()}</span>
+                <p className="mt-1 text-[13px] text-primary-blue">
+                  by <span className="italic">purepearl studio</span>
+                </p>
+
+                <div className="mt-3 flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 bg-[#F3F4F6] text-gray-500 text-[12px] font-medium rounded-full px-3 py-1.5">
+                    <SignalIcon />
+                    Beginner
+                  </span>
+                  <div className="flex items-center -space-x-2">
+                    {avatars.map((src, index) => (
+                      <img
+                        key={`${src}-${index}`}
+                        src={src}
+                        alt=""
+                        className="w-7 h-7 rounded-full object-cover border-2 border-white"
+                      />
+                    ))}
+                    <span className="w-7 h-7 rounded-full bg-lime-accent text-[10px] font-bold text-dark-navy inline-flex items-center justify-center border-2 border-white">
+                      26+
+                    </span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl font-bold text-primary-blue">
-                      ${course.price}
-                    </span>
-                    <span className="text-sm text-gray-400 line-through">
-                      ${course.originalPrice}
-                    </span>
-                  </div>
-                  <span className="text-xs bg-lime-accent/30 text-dark-navy font-semibold px-2 py-1 rounded-full">
-                    {course.level}
-                  </span>
-                </div>
+                <p className="mt-4">
+                  <span className="text-[20px] font-extrabold text-primary-blue">$25</span>
+                  <span className="text-[13px] text-gray-400 ml-0.5">lifetime</span>
+                </p>
               </div>
             </Link>
           ))}
@@ -215,7 +202,10 @@ const Courses = () => {
           </p>
         )}
         <div className="text-center mt-10">
-          <Link href="/courses" className="bg-primary-blue hover:bg-primary-blue-dark text-white px-8 py-3 rounded-full font-semibold transition-colors duration-200 inline-block">
+          <Link
+            href="/courses"
+            className="bg-primary-blue hover:bg-primary-blue-dark text-white px-8 py-3 rounded-full font-semibold transition-colors duration-200 inline-block"
+          >
             View All Courses
           </Link>
         </div>
