@@ -106,7 +106,7 @@ const courses = [
     instructor: {
       name: "PurePearl Studio",
       title: "Professional Creator",
-      avatar: "/images/Ellipse (1).png",
+      avatar: "/images/Ellipse (6).png",
       bio: "Emily designs learning products used by millions. She coaches teams on research, systems thinking, and shipping delightful interfaces.",
       courses: 8,
       students: 41200,

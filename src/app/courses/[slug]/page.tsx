@@ -140,6 +140,7 @@ export default function CourseDetailPage() {
     { id: "reviews", label: "Reviews" },
   ] as const;
 
+  const previewLessons = course.curriculum.flatMap((section) => section.lessons).slice(0, 3);
   const includes = [
     { label: "Learning Resources", icon: HiOutlineBookOpen },
     { label: "Quality Lesson Videos", icon: HiOutlinePlay },
@@ -293,33 +294,14 @@ export default function CourseDetailPage() {
                   </span>
                 </div>
               </div>
-              <div className="flex items-center gap-3 shrink-0">
-                {enrolled ? (
-                  <Link
-                    href="/dashboard"
-                    className="hidden sm:inline-flex items-center h-11 px-5 rounded-full bg-white text-dark-navy font-semibold text-[14px]"
-                  >
-                    Go to dashboard
-                  </Link>
-                ) : (
-                  <button
-                    type="button"
-                    disabled={enrolling}
-                    onClick={handleEnroll}
-                    className="hidden sm:inline-flex items-center h-11 px-5 rounded-full bg-white text-dark-navy font-semibold text-[14px]"
-                  >
-                    {enrolling ? "Enrolling..." : "Enroll Now"}
-                  </button>
-                )}
-                <button
-                  type="button"
-                  onClick={handleShare}
-                  className="hidden sm:inline-flex items-center gap-2 h-11 px-5 rounded-full bg-lime-accent hover:bg-lime-dark text-dark-navy font-semibold text-[14px] shrink-0"
-                >
-                  <FaShare className="text-[12px]" />
-                  Share
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleShare}
+                className="hidden sm:inline-flex items-center gap-2 h-11 px-5 rounded-full bg-lime-accent hover:bg-lime-dark text-dark-navy font-semibold text-[14px] shrink-0"
+              >
+                <FaShare className="text-[12px]" />
+                Share
+              </button>
             </div>
 
             <div className="grid lg:grid-cols-[1fr_340px] gap-6 items-start">
@@ -535,8 +517,51 @@ export default function CourseDetailPage() {
                 </div>
               </div>
 
-              <aside className="bg-white rounded-[24px] p-6 shadow-[0_18px_50px_rgba(15,23,42,0.12)] lg:sticky lg:top-24">
-                <ul className="space-y-4">
+              <aside className="bg-white rounded-[24px] p-6 shadow-[0_18px_50px_rgba(15,23,42,0.12)]">
+                <h2 className="text-[20px] font-extrabold text-dark-navy">
+                  {course.lectures} Lessons ({course.duration})
+                </h2>
+                <ul className="mt-5 space-y-4">
+                  {previewLessons.map((lesson, index) => (
+                    <li key={lesson.title} className="flex items-start justify-between gap-3">
+                      <p className="text-[14px] text-dark-navy leading-snug">
+                        <span className="text-gray-400 mr-1">{String(index + 1).padStart(2, "0")}</span>
+                        {lesson.title}
+                      </p>
+                      <span className="text-[13px] text-primary-blue whitespace-nowrap">
+                        {lesson.duration}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-[13px] text-gray-400">99 more videos</p>
+                <p className="mt-6 text-[13px] text-gray-500 leading-relaxed">
+                  Ready to Dive In? Enroll Now and Start Building Your Digital Future!
+                </p>
+                <p className="mt-5">
+                  <span className="text-[32px] font-extrabold text-dark-navy">${course.price}</span>
+                  <span className="text-[14px] text-gray-400 ml-0.5">/lifetime</span>
+                </p>
+                {enrolled ? (
+                  <Link
+                    href="/dashboard"
+                    className="mt-4 h-12 rounded-full bg-lime-accent hover:bg-lime-dark text-dark-navy font-semibold text-[15px] w-full inline-flex items-center justify-center"
+                  >
+                    Go to dashboard
+                  </Link>
+                ) : (
+                  <button
+                    type="button"
+                    disabled={enrolling}
+                    onClick={handleEnroll}
+                    className="mt-4 h-12 rounded-full bg-lime-accent hover:bg-lime-dark text-dark-navy font-semibold text-[15px] w-full"
+                  >
+                    {enrolling ? "Enrolling..." : "Enroll Now"}
+                  </button>
+                )}
+
+                <h3 className="mt-8 font-extrabold text-[16px] text-dark-navy">This course include</h3>
+                <ul className="mt-4 space-y-3">
                   {includes.map((item) => (
                     <li key={item.label} className="flex items-center gap-3 text-[14px] text-gray-500">
                       <item.icon className="text-primary-blue text-[18px] shrink-0" />

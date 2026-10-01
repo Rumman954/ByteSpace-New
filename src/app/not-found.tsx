@@ -4,24 +4,30 @@ import Footer from "@/components/Footer";
 
 export default function NotFound() {
   return (
-    <main>
-      <Navbar />
-      <section className="bg-primary-blue min-h-[70vh] flex items-center justify-center text-center px-6 relative overflow-hidden">
-        <div className="absolute -right-10 top-10 w-40 h-40 bg-lime-accent rounded-3xl rotate-12 opacity-80" />
-        <div className="absolute left-8 bottom-16 w-24 h-24 bg-lime-accent rounded-full opacity-70" />
-        <div className="relative z-10">
-          <h1 className="text-[120px] md:text-[160px] leading-none font-black text-lime-accent">404</h1>
-          <p className="text-white text-xl md:text-2xl font-semibold max-w-md mx-auto">
-            The page you&apos;re looking for doesn&apos;t exist
-          </p>
-          <Link
-            href="/"
-            className="btn mt-8 rounded-full bg-lime-accent border-none text-dark-navy font-bold px-8"
-          >
-            Back to home
-          </Link>
-        </div>
-      </section>
+    <main className="bg-white min-h-screen">
+      <div className="relative bg-primary-blue hero-grid-pattern">
+        <Navbar className="bg-transparent" />
+        <section className="min-h-[calc(100vh-280px)] flex items-center justify-center text-center px-6 py-16">
+          <div className="max-w-[820px]">
+            <h1 className="text-[140px] md:text-[200px] leading-[0.85] font-black tracking-tight bg-gradient-to-b from-[#E8FF6A] to-[#A8E000] bg-clip-text text-transparent">
+              404
+            </h1>
+            <p className="mt-4 text-white text-[28px] md:text-[40px] font-extrabold leading-tight">
+              The page you are looking
+              <br className="hidden sm:block" /> for doesn&apos;t exist
+            </p>
+            <p className="mt-4 text-white/70 text-[15px] md:text-[16px]">
+              Try to use a correct url or go back to homepage to start again
+            </p>
+            <Link
+              href="/"
+              className="mt-8 h-12 px-8 rounded-full bg-lime-accent hover:bg-lime-dark text-dark-navy font-semibold text-[15px] inline-flex items-center justify-center"
+            >
+              Back to Home
+            </Link>
+          </div>
+        </section>
+      </div>
       <Footer />
     </main>
   );

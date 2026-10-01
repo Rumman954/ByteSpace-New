@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const avatars = ["/images/Ellipse.png", "/images/Ellipse (1).png", "/images/Ellipse (2).png"];
 
-const courses = [
+export const featuredCourses = [
   {
     id: 1,
     slug: "figma-to-tailwind",
@@ -98,8 +98,8 @@ const Courses = () => {
 
   const visibleCourses =
     active === "Featured"
-      ? courses
-      : courses.filter((course) => course.category === active);
+      ? featuredCourses
+      : featuredCourses.filter((course) => course.category === active);
 
   return (
     <section className="py-16 lg:py-20 bg-white">

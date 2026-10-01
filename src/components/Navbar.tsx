@@ -54,7 +54,7 @@ const Navbar = ({
                   key={link.name}
                   href={link.href}
                   className={`text-[15px] font-medium transition-colors ${
-                    pathname === link.href ? "text-white" : "text-white/80 hover:text-white"
+                    pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href)) ? "text-white" : "text-white/80 hover:text-white"
                   }`}
                 >
                   {link.name}
