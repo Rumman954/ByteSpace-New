@@ -1,26 +1,93 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@plugin "daisyui";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary-blue: #2B4FFF;
+  --color-primary-blue-dark: #1E3FE0;
+  --color-lime-accent: #C8FF00;
+  --color-lime-dark: #B8EF00;
+  --color-dark-navy: #0F172A;
+  --color-dark-blue: #1E1B4B;
+  --color-light-gray: #F8FAFC;
+  --color-medium-gray: #F1F5F9;
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #171717;
+  overflow-x: hidden;
+}
+
+.hero-grid-pattern {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.hero-shell {
+  container-type: inline-size;
+  width: 100%;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  height: min(800px, calc(100vw * 800 / 1440));
+}
+
+.hero-artboard {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1440px;
+  height: 800px;
+  margin-left: -720px;
+  overflow: hidden;
+  transform-origin: top center;
+  transform: scale(min(1, calc(100cqw / 1440px)));
+}
+
+.hero-side-left {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  z-index: 10;
+  width: 280px;
+  height: 360px;
+  pointer-events: none;
+}
+
+.hero-lime-tube {
+  position: absolute;
+  top: 86px;
+  right: -48px;
+  z-index: 12;
+  width: 230px;
+  height: 280px;
+  pointer-events: none;
+}
+
+.hero-side-cone {
+  position: absolute;
+  top: 248px;
+  right: 168px;
+  z-index: 11;
+  width: 140px;
+  height: 140px;
+  pointer-events: none;
+  transform: rotate(90deg);
+  filter: drop-shadow(0 16px 14px rgba(0, 20, 80, 0.2));
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }

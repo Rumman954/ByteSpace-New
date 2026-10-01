@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" fill="none">
+  <defs>
+    <linearGradient id="cylSide" x1="40" y1="40" x2="160" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F2FF84"/>
+      <stop offset="0.22" stop-color="#D8FF2E"/>
+      <stop offset="0.48" stop-color="#C8FF00"/>
+      <stop offset="0.78" stop-color="#B4E800"/>
+      <stop offset="1" stop-color="#8FB800"/>
+    </linearGradient>
+    <radialGradient id="cylTop" cx="38%" cy="38%" r="72%">
+      <stop offset="0" stop-color="#F7FFB0"/>
+      <stop offset="0.45" stop-color="#D4FF32"/>
+      <stop offset="1" stop-color="#B8EC00"/>
+    </radialGradient>
+    <radialGradient id="cylBottom" cx="50%" cy="50%" r="70%">
+      <stop offset="0" stop-color="#C8FF00"/>
+      <stop offset="1" stop-color="#8FB800"/>
+    </radialGradient>
+  </defs>
+  <g transform="rotate(26 100 130)">
+    <ellipse cx="100" cy="208" rx="58" ry="23" fill="url(#cylBottom)"/>
+    <rect x="42" y="52" width="116" height="156" fill="url(#cylSide)"/>
+    <ellipse cx="100" cy="52" rx="58" ry="27" fill="url(#cylTop)"/>
+    <ellipse cx="86" cy="44" rx="18" ry="8" fill="#FFFFFF" opacity="0.28"/>
+  </g>
+</svg>
