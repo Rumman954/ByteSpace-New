@@ -1,9 +1,7 @@
 import { createHash, randomBytes } from "node:crypto";
-import { createRequire } from "node:module";
-import { join } from "node:path";
+import coursesJson from "@/data/courses.json";
 
-const require = createRequire(join(process.cwd(), "server/index.js"));
-const { courses } = require("./data.js") as { courses: CourseRecord[] };
+const courses = coursesJson as CourseRecord[];
 
 export type CourseRecord = {
   id: string;

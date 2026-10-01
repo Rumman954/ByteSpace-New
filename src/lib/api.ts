@@ -16,7 +16,7 @@ export async function apiFetch<T>(
   const token =
     typeof window !== "undefined" ? localStorage.getItem("bytespace_token") : null;
   const headers = new Headers(options.headers);
-  headers.set("Content-Type", "application/json");
+  if (options.body) headers.set("Content-Type", "application/json");
   if (token) headers.set("Authorization", `Bearer ${token}`);
 
   const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
