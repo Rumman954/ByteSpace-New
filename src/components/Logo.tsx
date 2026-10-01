@@ -5,12 +5,14 @@ type LogoProps = {
   href?: string;
   wordmarkClassName?: string;
   size?: number;
+  showWordmark?: boolean;
 };
 
 export default function Logo({
   href = "/",
   wordmarkClassName = "text-white",
   size = 36,
+  showWordmark = true,
 }: LogoProps) {
   const maskId = useId();
 
@@ -34,9 +36,11 @@ export default function Logo({
           <circle cx="22.5" cy="20" r="13.2" fill="#C8FF00" />
         </g>
       </svg>
-      <span className={`text-[20px] font-bold tracking-tight leading-none ${wordmarkClassName}`}>
-        ByteSpace
-      </span>
+      {showWordmark && (
+        <span className={`text-[20px] font-bold tracking-tight leading-none ${wordmarkClassName}`}>
+          ByteSpace
+        </span>
+      )}
     </span>
   );
 
